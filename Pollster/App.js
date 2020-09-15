@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React, {useState} from 'react';
 import {
   SafeAreaView,
@@ -27,6 +19,8 @@ import {
 import Main from './components/Main.js';
 
 const App: () => React$Node = () => {
+  const [homePage, clientHome] = useState(false);
+  const [main, setMain] = useState(true);
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -34,7 +28,8 @@ const App: () => React$Node = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Main username="jarbarr" />
+          {main ? <Main signIn={clientHome} /> : null}
+          {homePage ? <homePage main={setMain} /> : null}
         </ScrollView>
       </SafeAreaView>
     </>
