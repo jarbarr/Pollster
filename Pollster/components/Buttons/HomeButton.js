@@ -8,7 +8,7 @@ const HomeButton = (props) => {
     style: isPress ? styles.buttonPress : styles.button,
     onPress: () => {
       if(isPress===false){
-        props.set(true);
+        props.home(true);
         setIsPress(true);
       } else {
         setIsPress(false);
@@ -27,7 +27,7 @@ const HomeButton = (props) => {
       <View>
         <TouchableHighlight {...touchProps} >
           <Text {...touchProps2} >
-            Login
+            Home
           </Text>
         </TouchableHighlight>
       </View>
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginButton;
+export default HomeButton;

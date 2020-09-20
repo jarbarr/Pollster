@@ -17,6 +17,8 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import Main from './components/Main.js';
+import HomePage from './components/UserHomePage.js';
+
 const pollster = require('./Routes/pollsterDB.js');
 
 const App: () => React$Node = () => {
@@ -26,12 +28,16 @@ const App: () => React$Node = () => {
 
   const findUser = (clientInfo) => {
     // console.log('app.js:', clientInfo);
-    let user = pollster.getClientInfo(clientInfo);
-    if (user !== undefined) {
-      clientHome(true);
-      setMain(false);
+    pollster.getClientInfo(clientInfo, setClient);
+    console.log(client);
+    if (client.email === clientInfo.email && client.mobile === clientInfo.mobile) {
+      setTimeout(() => {
+        clientHome(true);
+        setMain(false);
+      }, 600);
+
     }
-    setClient(user);
+    // setClient(user);
   }
   return (
     <>
@@ -41,7 +47,7 @@ const App: () => React$Node = () => {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           {main ? <Main findUser={findUser} /> : null}
-          {homePage ? <homePage user={client} main={setMain} signIn={clientHome}/> : null}
+          {homePage ? <HomePage user={client} main={setMain} signIn={clientHome}/> : null}
         </ScrollView>
       </SafeAreaView>
     </>

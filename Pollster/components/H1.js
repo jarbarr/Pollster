@@ -6,7 +6,7 @@ const H1 = (props) => {
   return (
     <>
       <View style={styles.view}>
-  <Text style={styles.header}>Hello props.user.firstName!</Text>
+  <Text style={styles.header}>Hello {props.user.firstName}!</Text>
   <Text style={styles.sectionTitle}>Are You Ready to Vote?</Text>
       </View>
     </>

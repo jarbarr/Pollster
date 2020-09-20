@@ -20,7 +20,7 @@ import {
 } from 'react-native';
 
 import H1 from './H1.js';
-import StatusButton from './Buttons/StatusButton.js';
+// import StatusButton from './Buttons/StatusButton.js';
 import HomeButton from './Buttons/HomeButton.js';
 import Login from './Login.js';
 import Register from './Register.js';
@@ -44,11 +44,11 @@ const HomePage = (props) => {
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Vote Here</Text>
-              <StatusButton/>
+              {/* <StatusButton/> */}
             </View>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Return Home</Text>
-              <HomeButton />
+              <HomeButton home={props.main} />
             </View>
           </View>
         </ScrollView>
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Main;
+export default HomePage;

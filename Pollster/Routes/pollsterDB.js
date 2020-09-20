@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 module.exports = {
-  getClientInfo: (info) => {
+  getClientInfo: (info, setClient) => {
     console.log('clientInfo about to be sent', info);
     let options = {
       url: 'http://localhost:5291/users',
@@ -10,8 +10,8 @@ module.exports = {
     };
     axios(options)
       .then((response)=> {
-        console.log(response.data);
-
+        // console.log(response.data);
+        setClient(response.data);
       })
       .catch(console.error)
   },
