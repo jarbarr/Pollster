@@ -16,15 +16,21 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
-import SubmitButton from './Buttons/SubmitButton.js';
+import Submit2Button from './Buttons/Submit2Button.js';
 
 const Login = (props) => {
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = () => { };
-  const handleChange = () => {  };
+  const handleSubmit = () => {
+    let info = {};
+    info.email = email;
+    info.mobile = mobile;
+    info.password = password;
+    // console.log(info);
+    props.findUser(info);
+  };
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -38,18 +44,21 @@ const Login = (props) => {
             </View>
           </TouchableOpacity>
           <View style={styles.sectionContainer}>
-            <TextInput placeholder="email" name="email" value={email} style={styles.sectionTitle} onChange={handleChange}></TextInput>
+            <TextInput placeholder="Email" style={styles.sectionTitle}
+              onChangeText={text => setEmail(text)} value={email} keyboardType={'email-address'} maxLength={30} autoCapitalize={'none'}></TextInput>
           </View>
           <View style={styles.sectionContainer}>
-            <TextInput placeholder="mobile" name="mobile" value={mobile} style={styles.sectionTitle} onChange={handleChange}></TextInput>
+            <TextInput placeholder="Mobile" style={styles.sectionTitle} onChangeText={text => setMobile(text)} value={mobile} keyboardType={'phone-pad'} maxLength={15} autoCapitalize={'none'}></TextInput>
           </View>
           <View style={styles.sectionContainer}>
-            <TextInput placeholder="password" secureTextEntry={true} name="password" onChange={handleChange} value={password} style={styles.sectionTitle}></TextInput>
+            <TextInput placeholder="Password" style={styles.sectionTitle}
+              onChangeText={text => setPassword(text)} value={password} keyboardType={'default'} maxLength={20} autoCapitalize={'none'}
+              secureTextEntry={true}></TextInput>
           </View>
           <View style={styles.sectionContainer}>
-            <SubmitButton>
+            <Submit2Button findUser={handleSubmit}>
               <Text>Submit</Text>
-            </SubmitButton>
+            </Submit2Button>
           </View>
         </View>
       </SafeAreaView>
@@ -87,13 +96,14 @@ const styles = StyleSheet.create({
   },
   body: {
     backgroundColor: 'rgb(236, 235, 250)',
+    alignItems: 'center',
   },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
   },
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: '600',
     color: Colors.black,
   },

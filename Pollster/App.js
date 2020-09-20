@@ -17,10 +17,22 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import Main from './components/Main.js';
+const pollster = require('./Routes/pollsterDB.js');
 
 const App: () => React$Node = () => {
   const [homePage, clientHome] = useState(false);
   const [main, setMain] = useState(true);
+  const [client, setClient] =useState({});
+
+  const findUser = (clientInfo) => {
+    // console.log('app.js:', clientInfo);
+    let user = pollster.getClientInfo(clientInfo);
+    if (user !== undefined) {
+      clientHome(true);
+      setMain(false);
+    }
+    setClient(user);
+  }
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -28,8 +40,8 @@ const App: () => React$Node = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          {main ? <Main signIn={clientHome} /> : null}
-          {homePage ? <homePage main={setMain} /> : null}
+          {main ? <Main findUser={findUser} /> : null}
+          {homePage ? <homePage user={client} main={setMain} signIn={clientHome}/> : null}
         </ScrollView>
       </SafeAreaView>
     </>

@@ -1,22 +1,35 @@
 const axios = require('axios');
 
 module.exports = {
-  getClientInfo: () => {
+  getClientInfo: (info) => {
+    console.log('clientInfo about to be sent', info);
     let options = {
-      url: 'http//:localhost:5291/users',
+      url: 'http://localhost:5291/users',
       method: 'get',
-      params: {
-        client: `${info}`
-      }
-    }
-    axios()
-      .then(console.log)
+      params: info
+    };
+    axios(options)
+      .then((response)=> {
+        console.log(response.data);
+
+      })
       .catch(console.error)
-  }
-  addClientInfo: (info) => {
+  },
+  registerClient: (info) => {
+    console.log(info);
+    let options = {
+      url: 'http://localhost:5291/users',
+      method: 'post',
+      data: info,
+    }
+    axios(options)
+      .then((response)=> {console.log('you did it!, yay', response)})
+      .catch(console.error)
+  },
+  updateClientInfo: (info) => {
     let options = {
       url: 'http//:localhost:5291/users',
-      method: 'post',
+      method: 'patch',
       data: {
         client: `${info}`
       }
@@ -24,5 +37,5 @@ module.exports = {
     axios(options)
       .then(console.log)
       .catch(console.error)
-  }
+  },
 }

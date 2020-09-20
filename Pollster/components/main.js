@@ -19,6 +19,7 @@ import {
   Button,
   ImageBackground,
   Linking,
+  TextInput,
 } from 'react-native';
 
 import Header from './Header.js';
@@ -34,7 +35,7 @@ const routes = require('../Routes/externalAPI.js');
 const pollster = require('../Routes/pollsterDB.js');
 
 const Main = (props) => {
-  const [news, setNews] = useState([]);
+  const [news, setNews] = useState('');
   const [statusVisible, setStatus] = useState(false);
   const [regVisible, setRegVisible] = useState(false);
   const [loginVisible, setLogin] = useState(false);
@@ -43,9 +44,11 @@ const Main = (props) => {
   const getNews = () => {
     // routes.NYT.Politics(setNews);
     routes.Guardian(setNews);
-    console.log(news);
+    console.log('yay:', news);
+    // setNews(newsies);
   }
   const addUser = (clientInfo) => {
+    // console.log(clientInfo);
     pollster.registerClient(clientInfo);
   }
 
@@ -92,7 +95,7 @@ const Main = (props) => {
               }}>
               <View style={styles.centeredView}>
                 <View style={styles.regView}>
-                  <Register set={setRegVisible} />
+                  <Register set={setRegVisible} client={addUser}/>
                 </View>
               </View>
             </Modal>
@@ -104,7 +107,7 @@ const Main = (props) => {
               }}>
               <View style={styles.centeredView}>
                 <View style={styles.regView}>
-                  <Login set={setLogin} />
+                  <Login findUser={props.findUser} set={setLogin} />
                 </View>
               </View>
             </Modal>
@@ -180,6 +183,9 @@ const Main = (props) => {
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>News Feed</Text>
               <NewsButton seeNews={seeNews} news={getNews}>What's New(s)?</NewsButton>
+            </View>
+            <View style={styles.footer}>
+              <Text style={styles.footerText}>a polling app by jarbarr</Text>
             </View>
           </View>
         </ScrollView>
@@ -295,9 +301,13 @@ const styles = StyleSheet.create({
   },
   sectionDescription: {
     marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
+    fontSize: 24,
+    fontWeight: '500',
+    color: Colors.white,
+    backgroundColor: '#2EE59D',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
   },
   highlight: {
     fontWeight: '700',
@@ -308,7 +318,14 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     padding: 4,
     paddingRight: 12,
-    textAlign: 'right',
+  },
+  footerText: {
+    marginTop: 8,
+    fontSize: 11,
+    fontWeight: '500',
+    color: Colors.white,
+    backgroundColor: '#2EE59D',
+    textAlign: 'center',
   },
 });
 

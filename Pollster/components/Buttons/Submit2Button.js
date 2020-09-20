@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Animated, View, Text, TextInput, StyleSheet, TouchableHighlight } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-const SubmitButton = (props) => {
+const Submit2Button = (props) => {
   const [isPress, setIsPress] = React.useState(false);
   const touchProps = {
     style: isPress ? styles.buttonPress : styles.button,
     onPress: () => {
-      props.submit();
+      props.findUser();
       if(isPress===false){
         setIsPress(true);
       } else {
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SubmitButton;
+export default Submit2Button;

@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import { Animated, View, Text, TextInput, StyleSheet, TouchableHighlight } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-const SubmitButton = (props) => {
+const HomeButton = (props) => {
   const [isPress, setIsPress] = React.useState(false);
   const touchProps = {
     style: isPress ? styles.buttonPress : styles.button,
     onPress: () => {
-      props.submit();
       if(isPress===false){
+        props.set(true);
         setIsPress(true);
       } else {
         setIsPress(false);
       }
       setTimeout(()=> {
-        setIsPress(false);
+        setIsPress(false)
       }, 500);
     },
   };
@@ -25,9 +25,9 @@ const SubmitButton = (props) => {
   return (
     <>
       <View>
-        <TouchableHighlight {...touchProps}>
+        <TouchableHighlight {...touchProps} >
           <Text {...touchProps2} >
-            Submit
+            Login
           </Text>
         </TouchableHighlight>
       </View>
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SubmitButton;
+export default LoginButton;

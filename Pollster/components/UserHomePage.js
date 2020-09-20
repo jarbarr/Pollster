@@ -1,6 +1,4 @@
-<script src="http://localhost:8097"></script>
-const axios = require('axios');
-const config = require('../config.js');
+{/* <script src="http://localhost:8097"></script> */}
 import React, { useState, useEffect } from 'react';
 import { Colors,} from 'react-native/Libraries/NewAppScreen';
 import {
@@ -22,7 +20,8 @@ import {
 } from 'react-native';
 
 import H1 from './H1.js';
-import RegisterButton from './Buttons/RegisterButton.js';
+import StatusButton from './Buttons/StatusButton.js';
+import HomeButton from './Buttons/HomeButton.js';
 import Login from './Login.js';
 import Register from './Register.js';
 
@@ -30,11 +29,9 @@ const routes = require('../Routes/externalAPI.js');
 
 const HomePage = (props) => {
   // const [news, setNews] = useState([]);
-  const clientInfo = () => {
-    axios.get('http//:localhost5291/user')
-      .then(console.log)
-      .catch(console.log)
-  }
+  // const [client, setClient] = useState('');
+  // const clientPreferences = () => {
+  // }
 
   return (
     <>
@@ -43,32 +40,15 @@ const HomePage = (props) => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header style={styles.header} />
+          <H1 user={props.user}/>
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Check Voter Registration Status</Text>
-              <StatusButton set={setStatus}>Status</StatusButton>
+              <Text style={styles.sectionTitle}>Vote Here</Text>
+              <StatusButton/>
             </View>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Register With Pollster</Text>
-              <RegisterButton set={setRegVisible} visible={regVisible}>Register</RegisterButton>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Secure Login</Text>
-              <LoginButton set={setLogin}>Login</LoginButton>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Upcoming Elections</Text>
-              <Text style={styles.sectionDescription}>
-                AP Election Calendar:
-              </Text>
-              <TouchableOpacity onPress={() => { setCalendar(true) }}>
-                <Image source={require('../static/electionsCalendar.png')} style={styles.calendar} />
-              </TouchableOpacity>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>News Feed</Text>
-              <NewsButton news={getNews}>What's New(s)?</NewsButton>
+              <Text style={styles.sectionTitle}>Return Home</Text>
+              <HomeButton />
             </View>
           </View>
         </ScrollView>
