@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import { Animated, View, Text, TextInput, StyleSheet, TouchableHighlight } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-const NewsButton = (props) => {
+const VoterInfoButton = (props) => {
   const [isPress, setIsPress] = React.useState(false);
   const touchProps = {
     style: isPress ? styles.buttonPress : styles.button,
     onPress: () => {
-      props.news();
-      props.seeNews(true);
-      if (isPress === false) {
+      props.getElections();
+      props.seeElections(true);
+      if(isPress===false){
         setIsPress(true);
       } else {
         setIsPress(false);
       }
-      setTimeout(() => {
+      setTimeout(()=> {
         setIsPress(false)
       }, 500);
     },
@@ -28,7 +28,7 @@ const NewsButton = (props) => {
       <View style={styles.padding}>
         <TouchableHighlight {...touchProps} >
           <Text {...touchProps2} >
-            News
+            More Info
           </Text>
         </TouchableHighlight>
       </View>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: 13 },
   },
   buttonPress: {
-    marginTop: 10,
+    // marginTop: 10,
     borderRadius: 25,
     paddingTop: 5,
     paddingBottom: 5,
@@ -99,4 +99,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NewsButton;
+export default VoterInfoButton;

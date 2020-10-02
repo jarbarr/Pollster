@@ -10,20 +10,20 @@ module.exports = {
     };
     axios(options)
       .then((response)=> {
-        // console.log(response.data);
+        console.log(response.data);
         setClient(response.data);
       })
       .catch(console.error)
   },
   registerClient: (info) => {
-    console.log(info);
+    console.log('data about to be sent:', info);
     let options = {
       url: 'http://localhost:5291/users',
       method: 'post',
       data: info,
     }
     axios(options)
-      .then((response)=> {console.log('you did it!, yay', response)})
+      .then((response)=> {console.log('client has been registered', response.data)})
       .catch(console.error)
   },
   updateClientInfo: (info) => {

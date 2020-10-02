@@ -2,20 +2,24 @@ import React, { useState } from 'react';
 import { Animated, View, Text, TextInput, StyleSheet, TouchableHighlight } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-const HomeButton = (props) => {
+const LogoutButton = (props) => {
   const [isPress, setIsPress] = React.useState(false);
   const touchProps = {
     style: isPress ? styles.buttonPress : styles.button,
     onPress: () => {
       if(isPress===false){
         props.home(true);
+        setTimeout(()=> {
+          props.leave(false)
+        }, 101);
+
         setIsPress(true);
       } else {
         setIsPress(false);
       }
       setTimeout(()=> {
         setIsPress(false)
-      }, 500);
+      }, 100);
     },
   };
   const touchProps2 = {
@@ -24,10 +28,10 @@ const HomeButton = (props) => {
 
   return (
     <>
-      <View>
+      <View style={styles.padding}>
         <TouchableHighlight {...touchProps} >
           <Text {...touchProps2} >
-            Home
+            Logout
           </Text>
         </TouchableHighlight>
       </View>
@@ -36,36 +40,40 @@ const HomeButton = (props) => {
 };
 
 const styles = StyleSheet.create({
-  button: {
+  padding: {
+    marginTop: 20,
+    paddingRight: 110,
+    paddingLeft: 110,
+  },
+  buttonPress: {
     alignItems: "center",
     borderRadius: 25,
     paddingTop: 5,
     paddingBottom: 5,
-    paddingLeft: 50,
-    paddingRight: 50,
-    backgroundColor: 'rgb(236, 235, 250)',
+    paddingLeft: 30,
+    paddingRight: 30,
+    backgroundColor: Colors.white,
     elevation: 6,
     shadowColor: 'rgba(0, 0, 0, 0.1)',
     shadowOpacity: 0.8,
     shadowRadius: 15,
     shadowOffset: { width: 1, height: 13 },
   },
-  buttonPress: {
-    marginTop: 10,
+  button: {
     borderRadius: 25,
     paddingTop: 5,
     paddingBottom: 5,
-    paddingLeft: 50,
-    paddingRight: 50,
+    paddingLeft: 30,
+    paddingRight: 30,
     shadowColor: 'rgba(46, 229, 157, 0.4)',
     shadowOpacity: 1.5,
     elevation: 20,
     shadowRadius: 30,
-    shadowOffset: { width: 1, height: 20 },
+    shadowOffset: { width: 1, height: 5 },
     backgroundColor: '#2EE59D',
     color: '#FFFFFF'
   },
-  text: {
+  textPress: {
     color: '#2EE59D',
     // shadowOpacity: 3,
     elevation: 8,
@@ -79,7 +87,7 @@ const styles = StyleSheet.create({
     // textShadowColor: 'rgba(46, 229, 157, 0.4)',
 
   },
-  textPress: {
+  text: {
     color: Colors.white,
     shadowColor: 'rgba(46, 229, 157, 0.4)',
     shadowOpacity: 1.5,
@@ -92,4 +100,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeButton;
+export default LogoutButton;

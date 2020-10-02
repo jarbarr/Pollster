@@ -37,14 +37,14 @@ const Login = (props) => {
       <SafeAreaView>
         <View style={styles.body}>
           <TouchableOpacity style={styles.close} onPress={() => {
-            props.set(false);
+            props.setLogin(false);
           }}>
             <View>
               <Text style={styles.closeText}>&#x2715;</Text>
             </View>
           </TouchableOpacity>
           <View style={styles.sectionContainer}>
-            <TextInput placeholder="Email" style={styles.sectionTitle}
+            <TextInput placeholder="Email" style={styles.sectionTitle1}
               onChangeText={text => setEmail(text)} value={email} keyboardType={'email-address'} maxLength={30} autoCapitalize={'none'}></TextInput>
           </View>
           <View style={styles.sectionContainer}>
@@ -95,17 +95,45 @@ const styles = StyleSheet.create({
     right: 0,
   },
   body: {
-    backgroundColor: 'rgb(236, 235, 250)',
+    backgroundColor: Colors.white,
     alignItems: 'center',
   },
   sectionContainer: {
-    marginTop: 32,
+    marginTop: 15,
     paddingHorizontal: 24,
   },
+  textInput: {
+    elevation: 6,
+    shadowColor: 'rgba(0, 0, 0, 0.1)',
+    shadowOpacity: 0.8,
+    shadowRadius: 10,
+    shadowOffset: { width: 1, height: 13 },
+  },
   sectionTitle: {
+    marginTop: 1,
+    padding: 15,
+    width: 200,
+    borderRadius: 30,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+    borderWidth: 1,
     fontSize: 18,
     fontWeight: '600',
     color: Colors.black,
+    backgroundColor: Colors.white,
+    textAlign: 'center',
+  },
+  sectionTitle1: {
+    marginTop: 40,
+    padding: 15,
+    width: 200,
+    borderRadius: 30,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+    borderWidth: 1,
+    fontSize: 18,
+    fontWeight: '600',
+    color: Colors.black,
+    backgroundColor: Colors.white,
+    textAlign: 'center',
   },
   sectionDescription: {
     marginTop: 8,

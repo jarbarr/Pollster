@@ -19,18 +19,21 @@ import {
 import Main from './components/Main.js';
 import HomePage from './components/UserHomePage.js';
 
-const pollster = require('./Routes/pollsterDB.js');
+const routes = require('./Routes/external/newsAPI.js');
+const electionInfo = require('./Routes/external/electionsAPI.js');
+const DBMS = require('./Routes/internal/DBMS.js');
 
 const App: () => React$Node = () => {
   const [homePage, clientHome] = useState(false);
   const [main, setMain] = useState(true);
   const [client, setClient] =useState({});
+  const [election, setElection] = useState([]);
 
   const findUser = (clientInfo) => {
     // console.log('app.js:', clientInfo);
-    pollster.getClientInfo(clientInfo, setClient);
+    DBMS.getClientInfo(clientInfo, setClient);
     console.log(client);
-    if (client.email === clientInfo.email && client.mobile === clientInfo.mobile) {
+    if (client.email === clientInfo.email && client.mobile === clientInfo.mobile && client.password === clientInfo.password) {
       setTimeout(() => {
         clientHome(true);
         setMain(false);
@@ -39,6 +42,13 @@ const App: () => React$Node = () => {
     }
     // setClient(user);
   }
+
+  const googleElectionAPI = () => {
+    console.log('click!');
+    electionInfo.elections(setElection);
+    console.log(election);
+  }
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -46,8 +56,8 @@ const App: () => React$Node = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          {main ? <Main findUser={findUser} /> : null}
-          {homePage ? <HomePage user={client} main={setMain} signIn={clientHome}/> : null}
+          {main ? <Main google={googleElectionAPI} election={election} setElection={setElection} findUser={findUser} /> : null}
+          {homePage ? <HomePage election={election} user={client} main={setMain} leave={clientHome}/> : null}
         </ScrollView>
       </SafeAreaView>
     </>

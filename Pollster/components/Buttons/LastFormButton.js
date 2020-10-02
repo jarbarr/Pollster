@@ -2,21 +2,23 @@ import React, { useState } from 'react';
 import { Animated, View, Text, TextInput, StyleSheet, TouchableHighlight } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-const NewsButton = (props) => {
-  const [isPress, setIsPress] = React.useState(false);
+const LastButton = (props) => {
+  const [isPress, setIsPress] = useState(false);
   const touchProps = {
     style: isPress ? styles.buttonPress : styles.button,
     onPress: () => {
-      props.news();
-      props.seeNews(true);
-      if (isPress === false) {
+      let lastPage = props.page - 1;
+      setTimeout(()=> {
+        props.last(lastPage);
+      }, 200);
+      if(isPress===false){
         setIsPress(true);
       } else {
         setIsPress(false);
       }
-      setTimeout(() => {
-        setIsPress(false)
-      }, 500);
+      setTimeout(()=> {
+        setIsPress(false);
+      }, 100);
     },
   };
   const touchProps2 = {
@@ -25,10 +27,10 @@ const NewsButton = (props) => {
 
   return (
     <>
-      <View style={styles.padding}>
-        <TouchableHighlight {...touchProps} >
+      <View>
+        <TouchableHighlight {...touchProps}>
           <Text {...touchProps2} >
-            News
+            Last
           </Text>
         </TouchableHighlight>
       </View>
@@ -37,13 +39,8 @@ const NewsButton = (props) => {
 };
 
 const styles = StyleSheet.create({
-  padding: {
-    marginTop: 20,
-    marginBottom: 20,
-    paddingRight: 90,
-    paddingLeft: 90,
-  },
   button: {
+    marginTop: 10,
     alignItems: "center",
     borderRadius: 25,
     paddingTop: 5,
@@ -99,4 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NewsButton;
+export default LastButton;

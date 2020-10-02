@@ -24,7 +24,7 @@ const StatusButton = (props) => {
 
   return (
     <>
-      <View>
+      <View style={styles.padding}>
         <TouchableHighlight {...touchProps}>
           <Text {...touchProps2} >
             Status
@@ -36,14 +36,20 @@ const StatusButton = (props) => {
 };
 
 const styles = StyleSheet.create({
+  padding: {
+    marginTop: 20,
+    marginBottom: 20,
+    paddingRight: 90,
+    paddingLeft: 90,
+  },
   button: {
     alignItems: "center",
     borderRadius: 25,
     paddingTop: 5,
     paddingBottom: 5,
-    paddingLeft: 50,
-    paddingRight: 50,
-    backgroundColor: 'rgb(236, 235, 250)',
+    paddingLeft: 30,
+    paddingRight: 30,
+    backgroundColor: Colors.white,
     elevation: 6,
     shadowColor: 'rgba(0, 0, 0, 0.1)',
     shadowOpacity: 0.8,
@@ -51,12 +57,11 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: 13 },
   },
   buttonPress: {
-    marginTop: 10,
     borderRadius: 25,
     paddingTop: 5,
     paddingBottom: 5,
-    paddingLeft: 50,
-    paddingRight: 50,
+    paddingLeft: 30,
+    paddingRight: 30,
     shadowColor: 'rgba(46, 229, 157, 0.4)',
     shadowOpacity: 1.5,
     elevation: 20,

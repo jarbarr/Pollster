@@ -2,20 +2,18 @@ import React, { useState } from 'react';
 import { Animated, View, Text, TextInput, StyleSheet, TouchableHighlight } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-const NewsButton = (props) => {
-  const [isPress, setIsPress] = React.useState(false);
+const StatisticsButton = (props) => {
+  const [isPress, setIsPress] = React.useState(false)
   const touchProps = {
     style: isPress ? styles.buttonPress : styles.button,
     onPress: () => {
-      props.news();
-      props.seeNews(true);
-      if (isPress === false) {
+      if(isPress===false){
         setIsPress(true);
-      } else {
-        setIsPress(false);
+       } else {
+         setIsPress(false);
       }
-      setTimeout(() => {
-        setIsPress(false)
+      setTimeout(()=> {
+        setIsPress(false);
       }, 500);
     },
   };
@@ -26,9 +24,9 @@ const NewsButton = (props) => {
   return (
     <>
       <View style={styles.padding}>
-        <TouchableHighlight {...touchProps} >
+        <TouchableHighlight {...touchProps}>
           <Text {...touchProps2} >
-            News
+            Statistics
           </Text>
         </TouchableHighlight>
       </View>
@@ -58,7 +56,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: 13 },
   },
   buttonPress: {
-    marginTop: 10,
     borderRadius: 25,
     paddingTop: 5,
     paddingBottom: 5,
@@ -99,4 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NewsButton;
+export default StatisticsButton;

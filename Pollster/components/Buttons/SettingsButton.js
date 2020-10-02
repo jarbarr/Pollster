@@ -2,20 +2,18 @@ import React, { useState } from 'react';
 import { Animated, View, Text, TextInput, StyleSheet, TouchableHighlight } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-const NewsButton = (props) => {
-  const [isPress, setIsPress] = React.useState(false);
+const SettingsButton = (props) => {
+  const [isPress, setIsPress] = React.useState(false)
   const touchProps = {
     style: isPress ? styles.buttonPress : styles.button,
     onPress: () => {
-      props.news();
-      props.seeNews(true);
-      if (isPress === false) {
+      if(isPress===false){
         setIsPress(true);
-      } else {
-        setIsPress(false);
+       } else {
+         setIsPress(false);
       }
-      setTimeout(() => {
-        setIsPress(false)
+      setTimeout(()=> {
+        setIsPress(false);
       }, 500);
     },
   };
@@ -26,9 +24,9 @@ const NewsButton = (props) => {
   return (
     <>
       <View style={styles.padding}>
-        <TouchableHighlight {...touchProps} >
+        <TouchableHighlight {...touchProps}>
           <Text {...touchProps2} >
-            News
+            Settings
           </Text>
         </TouchableHighlight>
       </View>
@@ -38,12 +36,12 @@ const NewsButton = (props) => {
 
 const styles = StyleSheet.create({
   padding: {
-    marginTop: 20,
-    marginBottom: 20,
-    paddingRight: 90,
-    paddingLeft: 90,
+    marginTop: 30,
+    // marginBottom: 20,
+    paddingRight: 110,
+    paddingLeft: 110,
   },
-  button: {
+  buttonPress: {
     alignItems: "center",
     borderRadius: 25,
     paddingTop: 5,
@@ -57,22 +55,21 @@ const styles = StyleSheet.create({
     shadowRadius: 15,
     shadowOffset: { width: 1, height: 13 },
   },
-  buttonPress: {
-    marginTop: 10,
+  button: {
     borderRadius: 25,
     paddingTop: 5,
     paddingBottom: 5,
     paddingLeft: 30,
     paddingRight: 30,
     shadowColor: 'rgba(46, 229, 157, 0.4)',
-    shadowOpacity: 1.5,
+    shadowOpacity: 1,
     elevation: 20,
-    shadowRadius: 30,
-    shadowOffset: { width: 1, height: 20 },
+    shadowRadius: 20,
+    shadowOffset: { width: 1, height: 10},
     backgroundColor: '#2EE59D',
     color: '#FFFFFF'
   },
-  text: {
+  textPress: {
     color: '#2EE59D',
     // shadowOpacity: 3,
     elevation: 8,
@@ -86,17 +83,24 @@ const styles = StyleSheet.create({
     // textShadowColor: 'rgba(46, 229, 157, 0.4)',
 
   },
-  textPress: {
+  text: {
     color: Colors.white,
     shadowColor: 'rgba(46, 229, 157, 0.4)',
     shadowOpacity: 1.5,
     elevation: 8,
-    shadowRadius: 20,
+    // shadowRadius: 20,
     margin: 8,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
+
+    // fontSize: 24,
+    // fontWeight: '400',
+    // justifyContent: 'center',
+    // textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: 1, height: 2 },
+    textShadowRadius: 6
   },
 });
 
-export default NewsButton;
+export default SettingsButton;

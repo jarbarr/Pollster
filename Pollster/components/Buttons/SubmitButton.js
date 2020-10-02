@@ -7,7 +7,9 @@ const SubmitButton = (props) => {
   const touchProps = {
     style: isPress ? styles.buttonPress : styles.button,
     onPress: () => {
-      props.submit();
+      setTimeout(()=> {
+        props.submit();
+      }, 200);
       if(isPress===false){
         setIsPress(true);
       } else {
@@ -15,7 +17,7 @@ const SubmitButton = (props) => {
       }
       setTimeout(()=> {
         setIsPress(false);
-      }, 500);
+      }, 100);
     },
   };
   const touchProps2 = {
@@ -37,13 +39,14 @@ const SubmitButton = (props) => {
 
 const styles = StyleSheet.create({
   button: {
+    marginTop: 10,
     alignItems: "center",
     borderRadius: 25,
     paddingTop: 5,
     paddingBottom: 5,
-    paddingLeft: 50,
-    paddingRight: 50,
-    backgroundColor: 'rgb(236, 235, 250)',
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: Colors.white,
     elevation: 6,
     shadowColor: 'rgba(0, 0, 0, 0.1)',
     shadowOpacity: 0.8,
@@ -55,8 +58,8 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     paddingTop: 5,
     paddingBottom: 5,
-    paddingLeft: 50,
-    paddingRight: 50,
+    paddingLeft: 20,
+    paddingRight: 20,
     shadowColor: 'rgba(46, 229, 157, 0.4)',
     shadowOpacity: 1.5,
     elevation: 20,

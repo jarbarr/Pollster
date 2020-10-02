@@ -7,7 +7,7 @@ const RegisterButton = (props) => {
   const touchProps = {
     style: isPress ? styles.buttonPress : styles.button,
     onPress: () => {
-      props.set(true);
+      props.show(true);
       if(isPress===false){
         setIsPress(true);
        } else {
@@ -24,7 +24,7 @@ const RegisterButton = (props) => {
 
   return (
     <>
-      <View>
+      <View style={styles.padding}>
         <TouchableHighlight {...touchProps}>
           <Text {...touchProps2} >
             Register
@@ -36,27 +36,34 @@ const RegisterButton = (props) => {
 };
 
 const styles = StyleSheet.create({
+  padding: {
+    marginTop: 10,
+    marginBottom: 10,
+    paddingRight: 90,
+    paddingLeft: 90,
+  },
   button: {
+    marginTop: 10,
     alignItems: "center",
     borderRadius: 25,
     paddingTop: 5,
     paddingBottom: 5,
-    paddingLeft: 50,
-    paddingRight: 50,
-    backgroundColor: 'rgb(236, 235, 250)',
+    paddingLeft: 30,
+    paddingRight: 30,
+    backgroundColor: Colors.white,
     elevation: 6,
-    shadowColor: 'rgba(0, 0, 0, 0.1)',
-    shadowOpacity: 0.8,
-    shadowRadius: 15,
-    shadowOffset: { width: 1, height: 13 },
+    shadowColor: 'rgba(0, 0, 0, 0.5)',
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    shadowOffset: { width: 1, height: 10 },
   },
   buttonPress: {
     marginTop: 10,
     borderRadius: 25,
     paddingTop: 5,
     paddingBottom: 5,
-    paddingLeft: 50,
-    paddingRight: 50,
+    paddingLeft: 30,
+    paddingRight: 30,
     shadowColor: 'rgba(46, 229, 157, 0.4)',
     shadowOpacity: 1.5,
     elevation: 20,

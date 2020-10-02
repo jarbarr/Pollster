@@ -1,5 +1,5 @@
 const axios = require('axios');
-const config = require('../config.js');
+const config = require('../../config.js');
 
 module.exports = {
   Guardian: (setNews) => {
@@ -19,14 +19,17 @@ module.exports = {
         let container = [];
           container = res.data.response.results.map((doc) => {
             let data = {};
-            data.ID = doc.id;
-            data.title = doc.webTitle;
-            data.url = doc.webUrl;
-            // data.image = doc.multimedia[0].url
+            console.log(doc.id)
+            // if (doc.id === 'politics') {
+              data.id = doc.id;
+              data.title = doc.webTitle;
+              data.url = doc.webUrl;
+            // }
             return data
+            // data.image = doc.multimedia[0].url
           })
-          // console.log(container);
-          return setNews(container);
+          console.log(container);
+          return setNews(container.slice(1));
       })
       .catch((err) => {
         console.error('no news for you!:', err);
@@ -55,7 +58,7 @@ module.exports = {
       }
       axios(options)
         .then((res) => {
-          console.log('whats new(s)?:', res.data.response.docs[0].abstract);
+          // console.log('whats new(s)?:', res.data.response.docs[0].abstract);
           let container = [];
           container = res.data.response.docs.map((doc) => {
             let data = {};
@@ -64,8 +67,8 @@ module.exports = {
             data.image = doc.multimedia[0].url
             return data
           })
-          console.log(container);
-          setNews(container);
+          // console.log(container);
+          return setNews(container.slice(1));
         })
         .catch((err) => {
           console.error('no news for you!:', err);

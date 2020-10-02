@@ -37,13 +37,14 @@ const Submit2Button = (props) => {
 
 const styles = StyleSheet.create({
   button: {
+    marginTop: 10,
     alignItems: "center",
     borderRadius: 25,
     paddingTop: 5,
     paddingBottom: 5,
     paddingLeft: 50,
     paddingRight: 50,
-    backgroundColor: 'rgb(236, 235, 250)',
+    backgroundColor: Colors.white,
     elevation: 6,
     shadowColor: 'rgba(0, 0, 0, 0.1)',
     shadowOpacity: 0.8,
