@@ -19,22 +19,22 @@ import {
   Linking,
 } from 'react-native';
 
-import H1 from './UserHeader.js';
 // import StatusButton from './Buttons/StatusButton.js';
-import LogoutButton from './Buttons/LogoutButton.js';
+import ElectionsModal from './Modals/ElectionsModal.js';
+import H1 from './Headers/Homepage/H1.js';
+import H2 from './Headers/Homepage/H2.js';
+import H3 from './Headers/Homepage/H3.js';
+import H4 from './Headers/Homepage/H4.js';
 import Login from './Login.js';
+import LogoutButton from './Buttons/LogoutButton.js';
+import NewsButton from './Buttons/NewsButton.js';
+import NewsModal from './Modals/NewsModal.js';
+import SettingsButton from './Buttons/SettingsButton.js';
+import StatisticsButton from './Buttons/StatisticsButton.js';
 import StatusButton from './Buttons/StatusButton.js';
+import StatusModal from './Modals/StatusModal.js';
 import VoteButton from './Buttons/VoteButton.js';
 import VoterInfoButton from './Buttons/VoterInfoButton.js';
-import NewsButton from './Buttons/NewsButton.js';
-import StatisticsButton from './Buttons/StatisticsButton.js';
-import SettingsButton from './Buttons/SettingsButton.js';
-import StatusModal from './Modals/StatusModal.js';
-import ElectionsModal from './Modals/ElectionsModal.js';
-import NewsModal from './Modals/NewsModal.js';
-import UserH2 from './UserH2.js';
-import UserH3 from './UserH3.js';
-import UserH4 from './UserH4.js';
 
 const routes = require('../Routes/external/newsAPI.js');
 const google = require('../Routes/external/electionsAPI.js');
@@ -67,44 +67,37 @@ const HomePage = (props) => {
           style={styles.scrollView}>
           <H1 user={props.user}/>
           <View style={styles.body}>
-          <StatusModal setStatus={setStatus} statusVisible={statusVisible}/>
+            <StatusModal setStatus={setStatus} statusVisible={statusVisible}/>
             <NewsModal news={news} newsVisible={newsVisible} seeNews={seeNews}/>
             <ElectionsModal elections={elections} electionsVisible={electionsVisible} seeElections={seeElections}/>
             <View style={styles.sectionContainer}>
-            <TouchableOpacity style={styles.main}>
-            <UserH2 />
-              <Text style={styles.sectionTitle}>Voter Registration</Text>
-              <StatusButton set={setStatus}>Status</StatusButton>
-              <Text style={styles.sectionTitle}>More Info</Text>
-              <VoterInfoButton seeElections={seeElections} getElections={getElections}/>
+              <TouchableOpacity style={styles.main}>
+                <H2 />
+                <Text style={styles.sectionTitle}>Voter Registration</Text>
+                <StatusButton set={setStatus}>Status</StatusButton>
+                <Text style={styles.sectionTitle}>More Info</Text>
+                <VoterInfoButton seeElections={seeElections} getElections={getElections}/>
               </TouchableOpacity>
             </View>
             <View style={styles.sectionContainer}>
-            <TouchableOpacity style={styles.main}>
-            <UserH3 />
-              <Text style={styles.sectionTitle}>Past Elections</Text>
-              <StatisticsButton/>
-              <Text style={styles.sectionTitle}>News Feed</Text>
-              <NewsButton seeNews={seeNews} news={getNews}>What's New(s)?</NewsButton>
+              <TouchableOpacity style={styles.main}>
+                <H3 />
+                <Text style={styles.sectionTitle}>Past Elections</Text>
+                <StatisticsButton/>
+                <Text style={styles.sectionTitle}>News Feed</Text>
+                <NewsButton seeNews={seeNews} news={getNews}/>
               </TouchableOpacity>
             </View>
             <View style={styles.sectionContainer}>
-            <TouchableOpacity style={styles.main}>
-            <UserH4 />
-              <Text style={styles.sectionTitle}>Vote Here</Text>
-              <VoteButton/>
+              <TouchableOpacity style={styles.main}>
+                <H4 />
+                <Text style={styles.sectionTitle}>Vote Here</Text>
+                <VoteButton goVote={props.goVote} leave={props.leave}/>
               </TouchableOpacity>
             </View>
-            {/* <View style={styles.sectionContainer}> */}
             <View style={styles.footer}>
-              {/* <TouchableOpacity style={styles.footerFiller}> */}
-            {/* <View style={styles.sectionContainer}> */}
-              <SettingsButton/>
+              <SettingsButton settings={props.settings} leave={props.leave}/>
               <LogoutButton home={props.main} leave={props.leave}/>
-            {/* </View> */}
-              {/* <Text style={styles.footerText}></Text> */}
-              {/* </TouchableOpacity> */}
-            {/* </View> */}
             </View>
           </View>
         </ScrollView>

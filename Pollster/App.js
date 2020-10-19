@@ -18,35 +18,58 @@ import {
 
 import Main from './components/Main.js';
 import HomePage from './components/UserHomePage.js';
+import Settings from './components/Settings.js';
+import Vote from './components/Vote.js';
 
 const routes = require('./Routes/external/newsAPI.js');
 const electionInfo = require('./Routes/external/electionsAPI.js');
 const DBMS = require('./Routes/internal/DBMS.js');
+const { randomBytes, createHash } = require('crypto');
+const secp256k1 = require('secp256k1');
 
 const App: () => React$Node = () => {
   const [homePage, clientHome] = useState(false);
   const [main, setMain] = useState(true);
   const [client, setClient] =useState({});
   const [election, setElection] = useState([]);
+  const [settings, setSettings] = useState(false);
+  const [privKey, setPrivKey] = useState('');
+  const [Twilio, setTwilio] = useState(true);
+  const [vote, goVote] = useState(false);
 
   const findUser = (clientInfo) => {
     // console.log('app.js:', clientInfo);
     DBMS.getClientInfo(clientInfo, setClient);
-    console.log(client);
+    // console.log(client);
+    // setPrivKey(createPrivateKey());
+    // console.log(privKey);
     if (client.email === clientInfo.email && client.mobile === clientInfo.mobile && client.password === clientInfo.password) {
       setTimeout(() => {
         clientHome(true);
         setMain(false);
       }, 600);
-
     }
-    // setClient(user);
   }
 
+  const createPrivateKey = () => {
+    let privKey;
+    do {
+      privKey = randomBytes(32);
+    } while (!secp256k1.privateKeyVerify(privKey));
+    return privKey.toString('hex');
+  };
+
+  const getPublicKey = (privateKey) => {
+    // Your code here
+    const buf = Buffer.from(privateKey, 'hex');
+    let pubKey = secp256k1.publicKeyCreate(buf);
+    return pubKey.toString('hex');
+  };
+
   const googleElectionAPI = () => {
-    console.log('click!');
+    // console.log('click!');
     electionInfo.elections(setElection);
-    console.log(election);
+    // console.log(election);
   }
 
   return (
@@ -57,7 +80,9 @@ const App: () => React$Node = () => {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           {main ? <Main google={googleElectionAPI} election={election} setElection={setElection} findUser={findUser} /> : null}
-          {homePage ? <HomePage election={election} user={client} main={setMain} leave={clientHome}/> : null}
+          {homePage ? <HomePage settings={setSettings} election={election} user={client} main={setMain} goVote={goVote} leave={clientHome}/> : null}
+          {settings ? <Settings twilio={Twilio} setTwilio={setTwilio} user={client} settings={setSettings} home={clientHome}/> : null}
+          {vote ? <Vote user={client} home={clientHome} goVote={goVote} /> : null}
         </ScrollView>
       </SafeAreaView>
     </>

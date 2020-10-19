@@ -2,12 +2,12 @@ import React from 'react';
 import { Text, View, StyleSheet, } from 'react-native';
 import { Colors, } from 'react-native/Libraries/NewAppScreen';
 
-const UserH3 = () => {
+const H4 = () => {
   return (
     <>
       <View style={styles.view}>
         {/* <Text style={styles.h1}>Pollster</Text> */}
-        <Text style={styles.h2}>Explore</Text>
+        <Text style={styles.h2}>Vote</Text>
 
       </View>
     </>
@@ -33,7 +33,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: 1, height: 2 },
-    textShadowRadius: 6
+    textShadowRadius: 6,
+    shadowRadius: 30,
+
   },
   view: {
     // marginTop: 20,
@@ -46,7 +48,8 @@ const styles = StyleSheet.create({
     elevation: 20,
     shadowRadius: 30,
     shadowOffset: { width: 1, height: 20 },
+
   }
 });
 
-export default UserH3;
+export default H4;

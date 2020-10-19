@@ -7,6 +7,10 @@ const SettingsButton = (props) => {
   const touchProps = {
     style: isPress ? styles.buttonPress : styles.button,
     onPress: () => {
+      setTimeout(() => {
+        props.settings(true);
+        props.leave(false);
+      }, 200)
       if(isPress===false){
         setIsPress(true);
        } else {
@@ -14,7 +18,7 @@ const SettingsButton = (props) => {
       }
       setTimeout(()=> {
         setIsPress(false);
-      }, 500);
+      }, 150);
     },
   };
   const touchProps2 = {

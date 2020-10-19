@@ -10,7 +10,7 @@ module.exports = {
     }
     axios(options)
       .then((res) => {
-        console.log('election data', res.data.elections)
+        // console.log('election data', res.data.elections)
         let container = [];
           container = res.data.elections.map((unit) => {
             let data = {};
