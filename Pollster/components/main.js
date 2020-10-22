@@ -1,6 +1,9 @@
 <script src="http://localhost:8097"></script>
-const axios = require('axios');
+
 const config = require('../config.js');
+
+const axios = require('axios');
+
 import React, { useState, useEffect } from 'react';
 import { Colors,} from 'react-native/Libraries/NewAppScreen';
 import {
@@ -32,6 +35,7 @@ import ElectionsList from './ElectionsList.js';
 
 
 const info = require('../Routes/external/electionsAPI.js');
+const crypto = require('../Routes/internal/Crypto.js');
 const DBMS = require('../Routes/internal/DBMS.js');
 
 const Main = (props) => {
@@ -40,18 +44,41 @@ const Main = (props) => {
   const [form1, setForm1] = useState({});
   const [form2, setForm2] = useState({});
   const [form3, setForm3] = useState({});
-  const [reminder, setReminder] = useState('')
+  const [reminder, setReminder] = useState('');
+  const [keys, setKeys] = useState({});
+  // const [user, setUser] = useState();
 
-  const addUser = () => {
-    let clientInfo = {};
-    clientInfo.form1 = form1;
-    clientInfo.form2 = form2;
-    clientInfo.form3 = form3;
-    // console.log(clientInfo);
-    DBMS.registerClient(clientInfo);
+  useEffect(() => {
+    crypto.generateKeys(setKeys);
+    console.log(keys);
+    props.setPrivKey(keys.privKey);
+    props.getPubKey(keys.pubKey);
+  }, [])
+
+  const fetchKeys = () => {
+    console.log('started fetch')
+    crypto.generateKeys(setKeys);
+    console.log(keys);
+    props.setPrivKey(keys.privKey);
+    props.getPubKey(keys.pubKey);
+    setTimeout(() => {
+      addUser();
+    }, 200)
   }
 
-
+  const addUser = () => {
+    console.log('started addUser')
+    let clientInfo = {};
+    console.log(keys);
+    // console.log(`privKey: ${props.privKey}, pubKey: ${props.pubKey}`);
+    clientInfo.form1 = form1;
+    clientInfo.form1.private_key = keys.privKey;
+    clientInfo.form1.public_key = keys.pubKey;
+    clientInfo.form2 = form2;
+    clientInfo.form3 = form3;
+    console.log(clientInfo)
+    DBMS.registerClient(clientInfo);
+  }
 
   return (
     <>
@@ -62,7 +89,7 @@ const Main = (props) => {
           style={styles.scrollView}>
           <Header style={styles.header} />
           <View style={styles.body}>
-            <RegisterModal reminder={reminder} setReminder={setReminder} visible={regVisible} close={setRegVisible} form1={setForm1} form2={setForm2} form3={setForm3} addUser={addUser}/>
+            <RegisterModal reminder={reminder} setReminder={setReminder} visible={regVisible} close={setRegVisible} form1={setForm1} form2={setForm2} form3={setForm3} addUser={addUser} fetchKeys={fetchKeys}/>
             <LoginModal visible={loginVisible} setLogin={setLogin} findUser={props.findUser} setLogin={setLogin}/>
             <View style={styles.sectionContainer}>
               <TouchableOpacity style={styles.main}>

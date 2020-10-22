@@ -2,7 +2,7 @@ const axios = require('axios');
 
 module.exports = {
   getClientInfo: (info, setClient) => {
-    console.log('clientInfo about to be sent', info);
+    // console.log('clientInfo about to be sent', info);
     let options = {
       url: 'http://localhost:5291/users',
       method: 'get',

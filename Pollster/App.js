@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -21,11 +21,12 @@ import HomePage from './components/UserHomePage.js';
 import Settings from './components/Settings.js';
 import Vote from './components/Vote.js';
 
+// const crypto = require('./crypto')
 const routes = require('./Routes/external/newsAPI.js');
 const electionInfo = require('./Routes/external/electionsAPI.js');
 const DBMS = require('./Routes/internal/DBMS.js');
-const { randomBytes, createHash } = require('crypto');
-const secp256k1 = require('secp256k1');
+// const secp256k1 = require('secp256k1');
+// const { randomBytes, createHash } = require('react-native-crypto');
 
 const App: () => React$Node = () => {
   const [homePage, clientHome] = useState(false);
@@ -33,16 +34,14 @@ const App: () => React$Node = () => {
   const [client, setClient] =useState({});
   const [election, setElection] = useState([]);
   const [settings, setSettings] = useState(false);
-  const [privKey, setPrivKey] = useState('');
   const [Twilio, setTwilio] = useState(true);
   const [vote, goVote] = useState(false);
+  const [privKey, setPrivKey] = useState('');
+  const [pubKey, getPubKey] = useState('');
 
   const findUser = (clientInfo) => {
-    // console.log('app.js:', clientInfo);
+    // console.log('app.js - clientInfo:', clientInfo);
     DBMS.getClientInfo(clientInfo, setClient);
-    // console.log(client);
-    // setPrivKey(createPrivateKey());
-    // console.log(privKey);
     if (client.email === clientInfo.email && client.mobile === clientInfo.mobile && client.password === clientInfo.password) {
       setTimeout(() => {
         clientHome(true);
@@ -51,20 +50,13 @@ const App: () => React$Node = () => {
     }
   }
 
-  const createPrivateKey = () => {
-    let privKey;
-    do {
-      privKey = randomBytes(32);
-    } while (!secp256k1.privateKeyVerify(privKey));
-    return privKey.toString('hex');
-  };
+  // useEffect(() => {
+  //   console.log('app privKey', privKey);
+  // }, [privKey]);
 
-  const getPublicKey = (privateKey) => {
-    // Your code here
-    const buf = Buffer.from(privateKey, 'hex');
-    let pubKey = secp256k1.publicKeyCreate(buf);
-    return pubKey.toString('hex');
-  };
+  // useEffect(() => {
+  //   console.log('app pubKey', pubKey);
+  // }, [pubKey]);
 
   const googleElectionAPI = () => {
     // console.log('click!');
@@ -79,7 +71,7 @@ const App: () => React$Node = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          {main ? <Main google={googleElectionAPI} election={election} setElection={setElection} findUser={findUser} /> : null}
+          {main ? <Main google={googleElectionAPI} election={election} setElection={setElection} findUser={findUser} setPrivKey={setPrivKey} getPubKey={getPubKey} privKey={privKey} pubKey={pubKey}/> : null}
           {homePage ? <HomePage settings={setSettings} election={election} user={client} main={setMain} goVote={goVote} leave={clientHome}/> : null}
           {settings ? <Settings twilio={Twilio} setTwilio={setTwilio} user={client} settings={setSettings} home={clientHome}/> : null}
           {vote ? <Vote user={client} home={clientHome} goVote={goVote} /> : null}

@@ -33,11 +33,11 @@ const Register3 = (props) => {
     props.setReminder(reminder);
     props.close(false);
     props.setPage(0);
-    setTimeout(() => {
-      props.addUser();
-    }, 200);
+    props.fetchKeys();
+    // setTimeout(() => {
+    //   props.addUser();
+    // }, 300);
   };
-  // const handleChange = () => { };
   return (
     <>
       <StatusBar barStyle="dark-content" />
