@@ -16,8 +16,8 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
-import SubmitButton from '../Buttons/SubmitButton.js';
-import LastButton from '../Buttons/LastFormButton.js';
+import SubmitButton from '../Buttons/Main/Register/Submit.js';
+import LastButton from '../Buttons/Main/Register/LastForm.js';
 
 const dbms = require('../../Routes/internal/DBMS.js');
 
@@ -34,9 +34,6 @@ const Register3 = (props) => {
     props.close(false);
     props.setPage(0);
     props.fetchKeys();
-    // setTimeout(() => {
-    //   props.addUser();
-    // }, 300);
   };
   return (
     <>

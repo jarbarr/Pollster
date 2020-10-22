@@ -50,14 +50,6 @@ const App: () => React$Node = () => {
     }
   }
 
-  // useEffect(() => {
-  //   console.log('app privKey', privKey);
-  // }, [privKey]);
-
-  // useEffect(() => {
-  //   console.log('app pubKey', pubKey);
-  // }, [pubKey]);
-
   const googleElectionAPI = () => {
     // console.log('click!');
     electionInfo.elections(setElection);
@@ -73,7 +65,7 @@ const App: () => React$Node = () => {
           style={styles.scrollView}>
           {main ? <Main google={googleElectionAPI} election={election} setElection={setElection} findUser={findUser} setPrivKey={setPrivKey} getPubKey={getPubKey} privKey={privKey} pubKey={pubKey}/> : null}
           {homePage ? <HomePage settings={setSettings} election={election} user={client} main={setMain} goVote={goVote} leave={clientHome}/> : null}
-          {settings ? <Settings twilio={Twilio} setTwilio={setTwilio} user={client} settings={setSettings} home={clientHome}/> : null}
+          {settings ? <Settings user={client} twilio={Twilio} setTwilio={setTwilio} user={client} settings={setSettings} home={clientHome}/> : null}
           {vote ? <Vote user={client} home={clientHome} goVote={goVote} /> : null}
         </ScrollView>
       </SafeAreaView>

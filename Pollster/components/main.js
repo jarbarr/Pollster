@@ -24,12 +24,11 @@ import {
   Linking,
   TextInput,
 } from 'react-native';
-import Header from './Header.js';
-import RegisterButton from './Buttons/RegisterButton.js';
-import RegisterModal from './Modals/RegisterModal.js';
-import SubmitButton from './Buttons/SubmitButton.js';
-import LoginButton from './Buttons/LoginButton.js';
-import LoginModal from './Modals/LoginModal.js';
+import Banner from './Banner.js';
+import RegisterButton from './Buttons/Main/Register.js';
+import RegisterModal from './Modals/Main/Register.js';
+import LoginButton from './Buttons/Main/Login.js';
+import LoginModal from './Modals/Main/Login.js';
 import Login from './Login.js';
 import ElectionsList from './ElectionsList.js';
 
@@ -87,9 +86,9 @@ const Main = (props) => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header style={styles.header} />
+          <Banner style={styles.header} />
           <View style={styles.body}>
-            <RegisterModal reminder={reminder} setReminder={setReminder} visible={regVisible} close={setRegVisible} form1={setForm1} form2={setForm2} form3={setForm3} addUser={addUser} fetchKeys={fetchKeys}/>
+            <RegisterModal reminder={reminder} setReminder={setReminder} visible={regVisible} close={setRegVisible} form1={setForm1} form2={setForm2} form3={setForm3} fetchKeys={fetchKeys}/>
             <LoginModal visible={loginVisible} setLogin={setLogin} findUser={props.findUser} setLogin={setLogin}/>
             <View style={styles.sectionContainer}>
               <TouchableOpacity style={styles.main}>

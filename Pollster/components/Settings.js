@@ -18,11 +18,22 @@ import {
   Linking
 } from 'react-native';
 
-import ExitSettingsButton from './Buttons/ExitSettingsButton.js';
+import ExitButton from './Buttons/Settings/Exit.js';
 import H1 from './SettingsHeaders/H1.js';
+import PasswordButton from './Buttons/Settings/Password.js';
+import PersonalButton from './Buttons/Settings/Personal.js';
+import PrivKeyButton from './Buttons/Settings/PrivKey.js';
+import PrivKeyModal from './Modals/Settings/PrivKey.js';
+import PubKeyButton from './Buttons/Settings/PubKey.js';
+import PubKeyModal from './Modals/Settings/PubKey.js';
+import UserInfoModal from './Modals/Settings/UserInfo.js';
 import TwilioSwitch from './ToggleSwitch/Twilio.js';
 
 const Settings = (props) => {
+  const [privKey, seePrivKey] = useState(false);
+  const [pubKey, seePubKey] = useState(false);
+  const [userInfo, seeInfo] = useState(false);
+  const [password, seePassword] = useState(false);
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -32,6 +43,9 @@ const Settings = (props) => {
           style={styles.scrollView}>
           <H1 user={props.user}/>
           <View style={styles.body}>
+            <PrivKeyModal seePrivKey={seePrivKey} privKey={privKey} privateKey={props.user.private_key}/>
+            <PubKeyModal seePubKey={seePubKey} pubKey={pubKey} publicKey={props.user.public_key}/>
+            <UserInfoModal seeInfo={seeInfo} userInfo={userInfo} user={props.user} />
             <View style={styles.sectionContainer}>
               <TouchableOpacity style={styles.main}>
               {/* <H2 /> */}
@@ -40,8 +54,17 @@ const Settings = (props) => {
               {/* <Text style={styles.sectionTitle}>More Info</Text> */}
               </TouchableOpacity>
             </View>
+            <View style={styles.sectionContainer}>
+              <TouchableOpacity style={styles.main}>
+              <Text style={styles.sectionTitle}>User Information</Text>
+              <PersonalButton seeInfo={seeInfo}/>
+              <PrivKeyButton seePrivKey={seePrivKey} />
+              <PubKeyButton seePubKey={seePubKey}/>
+              <PasswordButton seePassword={seePassword}/>
+              </TouchableOpacity>
+            </View>
             <View style={styles.footer}>
-              <ExitSettingsButton home={props.home} settings={props.settings}/>
+              <ExitButton home={props.home} settings={props.settings}/>
             </View>
           </View>
         </ScrollView>

@@ -16,8 +16,8 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
-import NextButton from '../Buttons/NextFormButton.js';
-import LastButton from '../Buttons/LastFormButton.js';
+import NextButton from '../Buttons/Main/Register/NextForm.js';
+import LastButton from '../Buttons/Main/Register/LastForm.js';
 
 const dbms = require('../../Routes/internal/DBMS.js');
 

@@ -11,30 +11,31 @@ import {
   ScrollView,
 } from 'react-native';
 import { Colors, } from 'react-native/Libraries/NewAppScreen';
-import NewsList from '../NewsList.js';
 
-const NewsModal = (props) => {
+const PrivKeyModal = (props) => {
   return (
     <>
       <Modal
         animationType="slide"
         transparent={true}
-        visible={props.newsVisible}
+        visible={props.privKey}
         onRequestClose={() => {
         }}>
         <ScrollView>
         <View style={styles.centeredView}>
           <View style={styles.regView}>
-            <TouchableOpacity style={styles.close2} onPress={() => {
-              props.seeNews(false);
+            <TouchableOpacity style={styles.close} onPress={() => {
+              props.seePrivKey(false);
             }}>
               <View>
                 <Text style={styles.closeText}>&#x2715;</Text>
               </View>
             </TouchableOpacity>
-            <View style={styles.headerContainer}>
-            <Text style={styles.header}>Scroll Through Today's Headlines</Text>
-                {props.news !== [] ? <NewsList news={props.news}/>: null}
+            <View style={styles.textContainer}>
+            <Text style={styles.h1}>Private Key</Text>
+            <Text style={styles.h2}>WARNING</Text>
+            <Text style={styles.h3}>*DO NOT SHARE THIS KEY*</Text>
+            <Text style={styles.text}>{props.privateKey}</Text>
             </View>
           </View>
         </View>
@@ -49,12 +50,41 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     margin: 10,
   },
-  headerContainer: {
+  textContainer: {
     borderRadius: 150,
     padding: 5,
   },
-  header: {
+  text: {
+    padding: 5,
+    marginTop: 5,
+    fontSize: 14,
+    textShadowOffset: { width: -1, height: 1 },
+    color: Colors.dark,
+    fontWeight: 'bold',
+  },
+  h2: {
+    padding: 5,
+    marginTop: 5,
+    fontSize: 20,
+    textAlign: 'center',
+    shadowColor: 'rgba(0, 0, 0, .75)',
+    shadowOpacity: .5,
+    elevation: 20,
+    shadowOffset: { width: 3, height: 3 },
+    shadowRadius: 2,
+    color: Colors.dark,
+    fontWeight: 'bold',
+  },
+  h3: {
+    padding: 5,
+    marginTop: 5,
     fontSize: 18,
+    textAlign: 'center',
+    color: Colors.dark,
+    fontWeight: 'bold',
+  },
+  h1: {
+    fontSize: 24,
     fontWeight: 'bold',
     color: Colors.white,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
@@ -69,7 +99,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 2.5,
     textAlign: 'center',
     marginTop: 50,
-    marginBottom: 30,
+    marginBottom: 20,
     padding: 10,
     borderRadius: 10,
   },
@@ -92,7 +122,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     paddingHorizontal: 24,
   },
-  close2: {
+  close: {
     flex: 1,
     position: 'absolute',
     right: 15,
@@ -127,4 +157,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NewsModal;
+export default PrivKeyModal;

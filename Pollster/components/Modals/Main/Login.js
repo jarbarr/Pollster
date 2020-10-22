@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { Colors,} from 'react-native/Libraries/NewAppScreen';
 
-import Login from '../Login.js';
+import Login from '../../Login.js';
 
 const LoginModal = (props) => {
   return (

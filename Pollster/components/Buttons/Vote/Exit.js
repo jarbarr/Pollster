@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Animated, View, Text, TextInput, StyleSheet, TouchableHighlight } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-const ExitSettingsButton = (props) => {
+const ExitButton = (props) => {
   const [isPress, setIsPress] = useState(false);
   const touchProps = {
     style: isPress ? styles.buttonPress : styles.button,
@@ -10,7 +10,7 @@ const ExitSettingsButton = (props) => {
       let lastPage = props.page - 1;
       setTimeout(()=> {
         props.home(true);
-        props.settings(false);
+        props.goVote(false);
       }, 200);
       if(isPress===false){
         setIsPress(true);
@@ -108,4 +108,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ExitSettingsButton;
+export default ExitButton;

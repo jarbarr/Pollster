@@ -16,7 +16,7 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
-import Submit2Button from './Buttons/Submit2Button.js';
+import SubmitButton from './Buttons/Main/Login/Submit.js';
 
 const Login = (props) => {
   const [email, setEmail] = useState('');
@@ -56,9 +56,7 @@ const Login = (props) => {
               secureTextEntry={true}></TextInput>
           </View>
           <View style={styles.sectionContainer}>
-            <Submit2Button findUser={handleSubmit}>
-              <Text>Submit</Text>
-            </Submit2Button>
+            <SubmitButton findUser={handleSubmit}/>
           </View>
         </View>
       </SafeAreaView>

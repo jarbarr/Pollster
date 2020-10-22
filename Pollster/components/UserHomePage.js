@@ -20,21 +20,21 @@ import {
 } from 'react-native';
 
 // import StatusButton from './Buttons/StatusButton.js';
-import ElectionsModal from './Modals/ElectionsModal.js';
+import ElectionsModal from './Modals/HomePage/Elections.js';
 import H1 from './Headers/Homepage/H1.js';
 import H2 from './Headers/Homepage/H2.js';
 import H3 from './Headers/Homepage/H3.js';
 import H4 from './Headers/Homepage/H4.js';
 import Login from './Login.js';
-import LogoutButton from './Buttons/LogoutButton.js';
-import NewsButton from './Buttons/NewsButton.js';
-import NewsModal from './Modals/NewsModal.js';
-import SettingsButton from './Buttons/SettingsButton.js';
-import StatisticsButton from './Buttons/StatisticsButton.js';
-import StatusButton from './Buttons/StatusButton.js';
-import StatusModal from './Modals/StatusModal.js';
-import VoteButton from './Buttons/VoteButton.js';
-import VoterInfoButton from './Buttons/VoterInfoButton.js';
+import LogoutButton from './Buttons/HomePage/Logout.js';
+import NewsButton from './Buttons/HomePage/News.js';
+import NewsModal from './Modals/HomePage/News.js';
+import SettingsButton from './Buttons/HomePage/Settings.js';
+import StatisticsButton from './Buttons/HomePage/Statistics.js';
+import StatusButton from './Buttons/HomePage/Status.js';
+import StatusModal from './Modals/HomePage/Status.js';
+import VoteButton from './Buttons/HomePage/Vote.js';
+import VoterInfoButton from './Buttons/HomePage/VoterInfo.js';
 
 const routes = require('../Routes/external/newsAPI.js');
 const google = require('../Routes/external/electionsAPI.js');

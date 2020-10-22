@@ -11,30 +11,30 @@ import {
   ScrollView,
 } from 'react-native';
 import { Colors, } from 'react-native/Libraries/NewAppScreen';
-import LocalElectionsList from '../LocalElectionsList.js';
 
-const ElectionsModal = (props) => {
+const PubKeyModal = (props) => {
   return (
     <>
       <Modal
         animationType="slide"
         transparent={true}
-        visible={props.electionsVisible}
+        visible={props.pubKey}
         onRequestClose={() => {
         }}>
         <ScrollView>
         <View style={styles.centeredView}>
           <View style={styles.regView}>
             <TouchableOpacity style={styles.close2} onPress={() => {
-              props.seeElections(false);
+              props.seePubKey(false);
             }}>
               <View>
                 <Text style={styles.closeText}>&#x2715;</Text>
               </View>
             </TouchableOpacity>
-            <View style={styles.headerContainer}>
-            <Text style={styles.header}>Local Election Info</Text>
-                {props.elections !== [] ? <LocalElectionsList elections={props.elections}/> : null}
+            <View style={styles.textContainer}>
+            <Text style={styles.h1}>Public Key</Text>
+            <Text style={styles.h2}>This key is your public facing identity</Text>
+            <Text style={styles.text}>{props.publicKey}</Text>
             </View>
           </View>
         </View>
@@ -49,12 +49,33 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     margin: 10,
   },
-  headerContainer: {
+  textContainer: {
     borderRadius: 150,
     padding: 5,
   },
-  header: {
+  text: {
+    padding: 5,
+    marginTop: 5,
+    fontSize: 14,
+    textShadowOffset: { width: -1, height: 1 },
+    color: Colors.dark,
+    fontWeight: 'bold',
+  },
+  h2: {
+    padding: 5,
+    marginTop: 5,
     fontSize: 18,
+    textAlign: 'center',
+    // shadowColor: 'rgba(0, 0, 0, .75)',
+    // shadowOpacity: .5,
+    elevation: 20,
+    // shadowOffset: { width: 3, height: 3 },
+    // shadowRadius: 2,
+    color: Colors.dark,
+    fontWeight: 'bold',
+  },
+  h1: {
+    fontSize: 24,
     fontWeight: 'bold',
     color: Colors.white,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
@@ -69,7 +90,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 2.5,
     textAlign: 'center',
     marginTop: 50,
-    marginBottom: 30,
+    marginBottom: 20,
     padding: 10,
     borderRadius: 10,
   },
@@ -127,4 +148,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ElectionsModal;
+export default PubKeyModal;

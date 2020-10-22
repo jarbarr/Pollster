@@ -18,7 +18,7 @@ import {
   Linking,
 } from 'react-native';
 
-import ExitVoteButton from './Buttons/ExitVoteButton.js';
+import ExitButton from './Buttons/Vote/Exit.js';
 import H1 from './Headers/Vote/H1.js';
 
 const Vote = (props) => {
@@ -31,8 +31,13 @@ const Vote = (props) => {
           style={styles.scrollView}>
           <H1 user={props.user}/>
           <View style={styles.body}>
+          <View style={styles.sectionContainer}>
+              <TouchableOpacity style={styles.main}>
+                <H1/>
+              </TouchableOpacity>
+            </View>
             <View style={styles.footer}>
-              <ExitVoteButton home={props.home} goVote={props.goVote}/>
+              <ExitButton home={props.home} goVote={props.goVote}/>
             </View>
           </View>
         </ScrollView>
@@ -47,6 +52,21 @@ const Vote = (props) => {
       },
       body: {
         backgroundColor: Colors.white,
+      },
+      sectionContainer: {
+        marginTop: 32,
+        paddingHorizontal: 24,
+      },
+      main: {
+        borderRadius: 30,
+        shadowColor: 'rgba(0, 0, 0, 0.2)',
+        shadowRadius: 30,
+        shadowOpacity: 4,
+        backgroundColor: Colors.white,
+        // color: '#FFFFFF',
+        paddingBottom: 20,
+        elevation: 20,
+        shadowOffset: { width: 1, height: 20 },
       },
       footer: {
         color: Colors.dark,
