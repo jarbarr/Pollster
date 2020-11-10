@@ -45,7 +45,6 @@ const Main = (props) => {
   const [form3, setForm3] = useState({});
   const [reminder, setReminder] = useState('');
   const [keys, setKeys] = useState({});
-  // const [user, setUser] = useState();
 
   useEffect(() => {
     crypto.generateKeys(setKeys);

@@ -16,11 +16,11 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
-import NextButton from '../Buttons/Main/Register/NextForm.js';
+import NextButton from '../../Buttons/Main/Register/NextForm.js';
 
-const dbms = require('../../Routes/internal/DBMS.js');
+// const dbms = require('../../../Routes/internal/DBMS.js');
 
-const Register = (props) => {
+const Form1 = (props) => {
   const [fn, setfn] = useState('');
   const [ln, setln] = useState('');
   const [email, setEmail] = useState('');
@@ -52,12 +52,12 @@ const Register = (props) => {
           </TouchableOpacity>
           <View style={styles.sectionContainer} >
             <TouchableOpacity style={styles.textInput}>
-            <TextInput placeholder="First Name" style={styles.sectionTitle1} onChangeText={text => setfn(text)} value={fn} keyboardType={'default'} maxLength={15} autoCapitalize={'none'}></TextInput>
+            <TextInput placeholder="First Name" style={styles.sectionTitle1} onChangeText={text => setfn(text)} value={fn} keyboardType={'default'} maxLength={15} autoCapitalize={'words'}></TextInput>
             </TouchableOpacity>
           </View>
           <View style={styles.sectionContainer}>
             <TouchableOpacity style={styles.textInput}>
-            <TextInput placeholder="Last Name" style={styles.sectionTitle} onChangeText={text => setln(text)} value={ln} keyboardType={'default'} maxLength={15} autoCapitalize={'none'}></TextInput>
+            <TextInput placeholder="Last Name" style={styles.sectionTitle} onChangeText={text => setln(text)} value={ln} keyboardType={'default'} maxLength={15} autoCapitalize={'words'}></TextInput>
             </TouchableOpacity>
           </View>
           <View style={styles.sectionContainer}>
@@ -178,4 +178,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Register;
+export default Form1;

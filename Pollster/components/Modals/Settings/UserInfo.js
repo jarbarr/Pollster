@@ -12,7 +12,41 @@ import {
 } from 'react-native';
 import { Colors, } from 'react-native/Libraries/NewAppScreen';
 
+import SaveButton from '../../Buttons/Settings/UserInfoModal/SaveChanges.js';
+
 const UserInfoModal = (props) => {
+
+  const [firstName, setFirstName] = useState(props.user.firstName);
+  const [fn, setfn] = useState(true);
+  const [lastName, setLastName] = useState(props.user.lastName);
+  const [ln, setln] = useState(true);
+  const [mobile, setMobile] = useState(props.user.mobile);
+  const [m, setm] = useState(true);
+  const [address1, setAddress1] = useState(props.user.address1);
+  const [a1, seta1] = useState(true);
+  const [address2, setAddress2] = useState(props.user.address1);
+  const [a2, seta2] = useState(true);
+  const [city, setCity] = useState(props.user.city);
+  const [c, setc] = useState(true);
+  const [state, setState] = useState(props.user.state);
+  const [s, sets] = useState(true);
+  const [zipCode, setZipCode] = useState(props.user.zipcode);
+  const [z, setz] = useState(true);
+
+  const saveChanges = () => {
+    let update = {};
+    update.id = props.user.id;
+    update.firstName = firstName;
+    update.lastName = lastName;
+    update.mobile = mobile;
+    update.address1 = address1;
+    update.address2 = address2;
+    update.city = city;
+    update.state = state;
+    update.zipCode = zipCode;
+    // update.party = party
+    props.updateUserInfo(update);
+  }
   return (
     <>
       <Modal
@@ -21,7 +55,7 @@ const UserInfoModal = (props) => {
         visible={props.userInfo}
         onRequestClose={() => {
         }}>
-        <ScrollView>
+        <ScrollView style={styles.scrollView}>
           <View style={styles.centeredView}>
             <View style={styles.regView}>
               <TouchableOpacity style={styles.close} onPress={() => {
@@ -36,50 +70,64 @@ const UserInfoModal = (props) => {
                 {/* <Text style={styles.h2}>WARNING</Text> */}
                 <Text style={styles.h2}>First Name</Text>
                 <View style={styles.info}>
-                  <Text style={styles.h3}>{props.user.firstName}</Text>
+                  {fn ? <Text style={styles.h3}>{props.user.firstName}</Text> : <TextInput style={styles.textInput} onChangeText={text => setFirstName(text)} value={firstName} keyboardType={'default'} maxLength={30} autoCapitalize={'words'}></TextInput>}
                 </View>
-                <Text style={styles.links}>edit</Text>
+                <Text style={styles.links}
+                  onPress={() => setfn(!fn)}>edit</Text>
                 <Text style={styles.h2}>Last Name</Text>
                 <View style={styles.info}>
-                  <Text style={styles.h3}>{props.user.lastname}</Text>
+                  {ln ? <Text style={styles.h3}>{props.user.lastname}</Text> : <TextInput style={styles.textInput} onChangeText={text => setLastName(text)} value={lastName} keyboardType={'default'} maxLength={30} autoCapitalize={'words'}></TextInput>}
                 </View>
-                <Text style={styles.links}>edit</Text>
+                <Text style={styles.links}
+                  onPress={() => setln(!ln)}>edit</Text>
                 <Text style={styles.h2}>Mobile</Text>
                 <View style={styles.info}>
-                  <Text style={styles.h3}>{props.user.mobile}</Text>
+                  {m ? <Text style={styles.h3}>{props.user.mobile}</Text> : <TextInput style={styles.textInput} onChangeText={text => setMobile(text)} value={mobile} keyboardType={'phone-pad'} maxLength={30} autoCapitalize={'words'}></TextInput>}
                 </View>
-                <Text style={styles.links}>edit</Text>
+                <Text style={styles.links}
+                  onPress={() => setm(!m)}>edit</Text>
                 <Text style={styles.h2}>Address line1</Text>
                 <View style={styles.info}>
-                  <Text style={styles.h3}>{props.user.address1}</Text>
+                  {a1 ? <Text style={styles.h3}>{props.user.address1}</Text> :
+                    <TextInput style={styles.textInput} onChangeText={text => setAddress1(text)} value={address1} keyboardType={'default'} maxLength={30} autoCapitalize={'words'}></TextInput>}
                 </View>
-                <Text style={styles.links}>edit</Text>
+                <Text style={styles.links}
+                  onPress={() => seta1(!a1)}>edit</Text>
                 <Text style={styles.h2}>Address Line2</Text>
                 <View style={styles.info}>
-                  <Text style={styles.h3}>{props.user.address2}</Text>
+                  {a2 ? <Text style={styles.h3}>{props.user.address2}</Text> :
+                    <TextInput style={styles.textInput} onChangeText={text => setAddress2(text)} value={address2} keyboardType={'default'} maxLength={30} autoCapitalize={'words'}></TextInput>}
                 </View>
-                <Text style={styles.links}>edit</Text>
+                <Text style={styles.links}
+                  onPress={() => seta2(!a2)}>edit</Text>
                 <Text style={styles.h2}>City</Text>
                 <View style={styles.info}>
-                  <Text style={styles.h3}>{props.user.city}</Text>
+                  {c ? <Text style={styles.h3}>{props.user.city}</Text> :
+                  <TextInput style={styles.textInput} onChangeText={text => setCity(text)} value={city} keyboardType={'default'} maxLength={30} autoCapitalize={'words'}></TextInput>}
                 </View>
-                <Text style={styles.links}>edit</Text>
+                <Text style={styles.links}
+                onPress={() => setc(!c)}>edit</Text>
                 <Text style={styles.h2}>State</Text>
                 <View style={styles.info}>
-                  <Text style={styles.h3}>{props.user.state}</Text>
+                  {s ? <Text style={styles.h3}>{props.user.state}</Text> :
+                  <TextInput style={styles.textInput} onChangeText={text => setState(text)} value={state} keyboardType={'default'} maxLength={30} autoCapitalize={'characters'}></TextInput>}
                 </View>
-                <Text style={styles.links}>edit</Text>
+                <Text style={styles.links}
+                onPress={() => sets(!s)}>edit</Text>
                 <Text style={styles.h2}>Zipcode</Text>
                 <View style={styles.info}>
-                  <Text style={styles.h3}>{props.user.zipcode}</Text>
+                  {z ? <Text style={styles.h3}>{props.user.zipcode}</Text> :
+                  <TextInput style={styles.textInput} onChangeText={text => setZipCode(text)} value={zipCode} keyboardType={'default'} maxLength={30} autoCapitalize={'words'}></TextInput>}
                 </View>
-                <Text style={styles.links}>edit</Text>
-                <Text style={styles.h2}>Party</Text>
+                <Text style={styles.links}
+                onPress={() => setz(!z)}>edit</Text>
+                {/* <Text style={styles.h2}>Party</Text>
                 <View style={styles.info}>
                   <Text style={styles.h3}>{props.user.party}</Text>
                 </View>
-                <Text style={styles.links}>edit</Text>
+                <Text style={styles.links}>edit</Text> */}
               </View>
+              <SaveButton saveChanges={saveChanges} seeInfo={props.seeInfo} />
             </View>
           </View>
         </ScrollView>
@@ -129,6 +177,14 @@ const styles = StyleSheet.create({
     color: 'rgba(0, 0, 0, .2)',
     fontWeight: 'bold',
   },
+  textInput: {
+    padding: 5,
+    marginTop: 5,
+    color: Colors.grey,
+    fontSize: 18,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
   h1: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -146,12 +202,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 50,
     marginBottom: 20,
-    padding: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 50,
+    paddingRight: 50,
     borderRadius: 10,
   },
   regView: {
-    marginLeft: 60,
-    marginRight: 60,
+    // marginLeft: 60,
+    // marginRight: 60,
     marginTop: 100,
     marginBottom: 100,
     backgroundColor: Colors.white,
@@ -187,7 +246,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    // marginTop: 50
+    // margin: 200
   },
   closeText: {
     fontWeight: '200',
@@ -198,9 +257,11 @@ const styles = StyleSheet.create({
   linkHelpers: {
     marginLeft: 10
   },
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
+  // scrollView: {
+  //   // backgroundColor: Colors.lighter,
+  //   height: 10,
+  //   marginRight: 10,
+  // },
 });
 
 export default UserInfoModal;

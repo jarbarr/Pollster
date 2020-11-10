@@ -27,12 +27,11 @@ module.exports = {
       .catch(console.error)
   },
   updateClientInfo: (info) => {
+    console.log(info);
     let options = {
-      url: 'http//:localhost:5291/users',
-      method: 'patch',
-      data: {
-        client: `${info}`
-      }
+      method: 'put',
+      url: 'http://localhost:5291/users',
+      data: info
     }
     axios(options)
       .then(console.log)

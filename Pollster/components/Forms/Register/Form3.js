@@ -16,12 +16,12 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
-import SubmitButton from '../Buttons/Main/Register/Submit.js';
-import LastButton from '../Buttons/Main/Register/LastForm.js';
+import SubmitButton from '../../Buttons/Main/Register/Submit.js';
+import LastButton from '../../Buttons/Main/Register/LastForm.js';
 
-const dbms = require('../../Routes/internal/DBMS.js');
+const dbms = require('../../../Routes/internal/DBMS.js');
 
-const Register3 = (props) => {
+const Form3 = (props) => {
   const [reminder, optIn] = useState('yes');
   const [party, setParty] = useState('independent');
 
@@ -181,4 +181,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Register3;
+export default Form3;

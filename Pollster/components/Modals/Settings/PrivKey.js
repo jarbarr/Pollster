@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontSize: 20,
     textAlign: 'center',
-    shadowColor: 'rgba(0, 0, 0, .75)',
+    shadowColor: 'rgba(0, 0, 0, .5)',
     shadowOpacity: .5,
     elevation: 20,
     shadowOffset: { width: 3, height: 3 },

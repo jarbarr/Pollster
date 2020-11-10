@@ -3,6 +3,7 @@ import { SectionList,
   Text,
   View,
   StyleSheet,
+  Linking,
 } from 'react-native';
 import { Colors,} from 'react-native/Libraries/NewAppScreen';
 
@@ -24,11 +25,11 @@ const LocalElectionsListItem = (props) => {
         {props.election.ballotInfoUrl}{'\n'}
       </Text>
       <Text style={styles.title}>Election Info Url:</Text>
-      <Text style={styles.url}>
+      <Text style={styles.url} onPress={() => Linking.openURL(`${props.election.electionInfoUrl}`)}>
         {props.election.electionInfoUrl}{'\n'}
       </Text>
       <Text style={styles.title}>Voting Location Finder Url:</Text>
-      <Text style={styles.url}>
+      <Text style={styles.url} onPress={() => Linking.openURL(`${props.election.votingLocationFinderUrl}`)}>
         {props.election.votingLocationFinderUrl}{'\n'}
       </Text>
       {/* <Text style={styles.url}>

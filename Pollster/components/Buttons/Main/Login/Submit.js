@@ -15,7 +15,7 @@ const Submit2Button = (props) => {
       }
       setTimeout(()=> {
         setIsPress(false);
-      }, 500);
+      }, 350);
     },
   };
   const touchProps2 = {

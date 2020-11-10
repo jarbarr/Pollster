@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   view: {
     backgroundColor: '#2EE59D',
     padding: 20,
-    // marginBottom: 100,
+    // marginBottom: 10,
   },
 });
 

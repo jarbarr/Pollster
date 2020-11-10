@@ -16,12 +16,12 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
-import NextButton from '../Buttons/Main/Register/NextForm.js';
-import LastButton from '../Buttons/Main/Register/LastForm.js';
+import NextButton from '../../Buttons/Main/Register/NextForm.js';
+import LastButton from '../../Buttons/Main/Register/LastForm.js';
 
-const dbms = require('../../Routes/internal/DBMS.js');
+// const dbms = require('../../../Routes/internal/DBMS.js');
 
-const Register2 = (props) => {
+const Form2 = (props) => {
   const [address1, setAddress1] = useState('');
   const [address2, setAddress2] = useState('');
   const [city, setCity] = useState('');
@@ -184,4 +184,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Register2;
+export default Form2;

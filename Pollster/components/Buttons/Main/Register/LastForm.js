@@ -27,7 +27,7 @@ const LastButton = (props) => {
 
   return (
     <>
-      <View>
+      <View style={styles.buttonContainer}>
         <TouchableHighlight {...touchProps}>
           <Text {...touchProps2} >
             Last
@@ -39,6 +39,10 @@ const LastButton = (props) => {
 };
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    marginLeft: 5,
+    marginRight: 5,
+  },
   button: {
     marginTop: 10,
     alignItems: "center",
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
     paddingRight: 30,
     backgroundColor: Colors.white,
     elevation: 6,
-    shadowColor: 'rgba(0, 0, 0, 0.1)',
+    shadowColor: 'rgba(0, 0, 0, 0.3)',
     shadowOpacity: 0.8,
     shadowRadius: 15,
     shadowOffset: { width: 1, height: 13 },

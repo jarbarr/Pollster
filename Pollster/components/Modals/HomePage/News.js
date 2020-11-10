@@ -17,6 +17,7 @@ const NewsModal = (props) => {
   return (
     <>
       <Modal
+        style={styles.modal}
         animationType="slide"
         transparent={true}
         visible={props.newsVisible}
@@ -122,8 +123,10 @@ const styles = StyleSheet.create({
   linkHelpers: {
     marginLeft: 10
   },
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  modal: {
+    // backgroundColor: Colors.lighter,
+    marginLeft: 100,
+    marginRight: 100,
   },
 });
 

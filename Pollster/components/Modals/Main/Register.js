@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 import { Colors,} from 'react-native/Libraries/NewAppScreen';
 
-import Register from '../../RegisterForms/Register.js';
-import Register2 from '../../RegisterForms/Register2.js';
-import Register3 from '../../RegisterForms/Register3.js';
+import Form1 from '../../Forms/Register/Form1.js';
+import Form2 from '../../Forms/Register/Form2.js';
+import Form3 from '../../Forms/Register/Form3.js';
 
 const RegisterModal = (props) => {
   const [page, setPage] = useState(0);
@@ -31,9 +31,9 @@ const RegisterModal = (props) => {
         }}>
         <View style={styles.centeredView}>
           <View style={styles.regView}>
-            {page === 0 ? <Register close={props.close} page={page} setPage={setPage} setForm1={props.form1}/> : null}
-            {page === 1 ? <Register2 close={props.close} page={page} setPage={setPage} setForm2={props.form2}/> : null}
-            {page === 2 ? <Register3 fetchKeys={props.fetchKeys} reminder={props.reminder} setReminder={props.setReminder} close={props.close} page={page} setPage={setPage} setForm3={props.form3}/> : null}
+            {page === 0 ? <Form1 close={props.close} page={page} setPage={setPage} setForm1={props.form1}/> : null}
+            {page === 1 ? <Form2 close={props.close} page={page} setPage={setPage} setForm2={props.form2}/> : null}
+            {page === 2 ? <Form3 fetchKeys={props.fetchKeys} reminder={props.reminder} setReminder={props.setReminder} close={props.close} page={page} setPage={setPage} setForm3={props.form3}/> : null}
           </View>
         </View>
       </Modal>
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default RegisterModal//
+export default RegisterModal;

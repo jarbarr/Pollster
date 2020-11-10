@@ -25,6 +25,7 @@ import Vote from './components/Vote.js';
 const routes = require('./Routes/external/newsAPI.js');
 const electionInfo = require('./Routes/external/electionsAPI.js');
 const DBMS = require('./Routes/internal/DBMS.js');
+const Crypto = require('./Routes/internal/Crypto.js');
 // const secp256k1 = require('secp256k1');
 // const { randomBytes, createHash } = require('react-native-crypto');
 
@@ -38,6 +39,8 @@ const App: () => React$Node = () => {
   const [vote, goVote] = useState(false);
   const [privKey, setPrivKey] = useState('');
   const [pubKey, getPubKey] = useState('');
+  const [signature, sign] = useState('');
+  const [ballot, setBallot] = useState('');
 
   const findUser = (clientInfo) => {
     // console.log('app.js - clientInfo:', clientInfo);
@@ -46,7 +49,7 @@ const App: () => React$Node = () => {
       setTimeout(() => {
         clientHome(true);
         setMain(false);
-      }, 600);
+      }, 400);
     }
   }
 
@@ -55,6 +58,23 @@ const App: () => React$Node = () => {
     electionInfo.elections(setElection);
     // console.log(election);
   }
+
+  const generateSignature = () => {
+    // console.log(ballot);
+    Crypto.signAndVerify(client.private_key, client.public_key,ballot, sign);
+    console.log(`signature: ${signature}`);
+  }
+
+  const updateUserInfo = (updates) => {
+    DBMS.updateClientInfo(updates);
+  }
+
+  // useEffect(() => {
+  //   console.log(ballot);
+  //   console.log(client.private_key);
+  //   Crypto.signAndVerify(client.private_key, client.public_key,ballot, sign);
+  //   console.log(signature);
+  // }, [ballot])
 
   return (
     <>
@@ -65,8 +85,8 @@ const App: () => React$Node = () => {
           style={styles.scrollView}>
           {main ? <Main google={googleElectionAPI} election={election} setElection={setElection} findUser={findUser} setPrivKey={setPrivKey} getPubKey={getPubKey} privKey={privKey} pubKey={pubKey}/> : null}
           {homePage ? <HomePage settings={setSettings} election={election} user={client} main={setMain} goVote={goVote} leave={clientHome}/> : null}
-          {settings ? <Settings user={client} twilio={Twilio} setTwilio={setTwilio} user={client} settings={setSettings} home={clientHome}/> : null}
-          {vote ? <Vote user={client} home={clientHome} goVote={goVote} /> : null}
+          {settings ? <Settings updateUserInfo={updateUserInfo} signature={signature} user={client} twilio={Twilio} setTwilio={setTwilio} user={client} settings={setSettings} home={clientHome}/> : null}
+          {vote ? <Vote generateSignature={generateSignature} ballot={ballot} setBallot={setBallot} user={client} home={clientHome} goVote={goVote} /> : null}
         </ScrollView>
       </SafeAreaView>
     </>

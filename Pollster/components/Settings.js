@@ -20,19 +20,24 @@ import {
 
 import ExitButton from './Buttons/Settings/Exit.js';
 import H1 from './SettingsHeaders/H1.js';
+import PartyButton from './Buttons/Settings/Party.js';
 import PasswordButton from './Buttons/Settings/Password.js';
 import PersonalButton from './Buttons/Settings/Personal.js';
 import PrivKeyButton from './Buttons/Settings/PrivKey.js';
-import PrivKeyModal from './Modals/Settings/PrivKey.js';
 import PubKeyButton from './Buttons/Settings/PubKey.js';
+import SignatureButton from './Buttons/Settings/Signature.js';
+import PrivKeyModal from './Modals/Settings/PrivKey.js';
 import PubKeyModal from './Modals/Settings/PubKey.js';
+import SignatureModal from './Modals/Settings/Signature.js';
 import UserInfoModal from './Modals/Settings/UserInfo.js';
 import TwilioSwitch from './ToggleSwitch/Twilio.js';
 
 const Settings = (props) => {
   const [privKey, seePrivKey] = useState(false);
   const [pubKey, seePubKey] = useState(false);
+  const [signature, seeSignature] = useState(false);
   const [userInfo, seeInfo] = useState(false);
+  const [party, seeParty] = useState(false);
   const [password, seePassword] = useState(false);
   return (
     <>
@@ -45,7 +50,8 @@ const Settings = (props) => {
           <View style={styles.body}>
             <PrivKeyModal seePrivKey={seePrivKey} privKey={privKey} privateKey={props.user.private_key}/>
             <PubKeyModal seePubKey={seePubKey} pubKey={pubKey} publicKey={props.user.public_key}/>
-            <UserInfoModal seeInfo={seeInfo} userInfo={userInfo} user={props.user} />
+            <SignatureModal user={props.user} seeSignature={seeSignature} sign={signature} signature={props.signature}/>
+            <UserInfoModal updateUserInfo={props.updateUserInfo} seeInfo={seeInfo} userInfo={userInfo} user={props.user} />
             <View style={styles.sectionContainer}>
               <TouchableOpacity style={styles.main}>
               {/* <H2 /> */}
@@ -60,7 +66,9 @@ const Settings = (props) => {
               <PersonalButton seeInfo={seeInfo}/>
               <PrivKeyButton seePrivKey={seePrivKey} />
               <PubKeyButton seePubKey={seePubKey}/>
+              <SignatureButton election={props.election} seeSignature={seeSignature}/>
               <PasswordButton seePassword={seePassword}/>
+              <PartyButton seeParty={seeParty}/>
               </TouchableOpacity>
             </View>
             <View style={styles.footer}>
